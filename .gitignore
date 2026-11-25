@@ -1,0 +1,15 @@
+# UniãoPet Git & Deploy Ignore
+node_modules/
+dist/
+dist-server/
+
+# Database & Runtime Persisted Data (DO NOT OVERWRITE IN DEPLOYS)
+data/
+backups/
+uniao_pet_db.json
+*.tmp
+*.log
+
+# Environment
+.env
+.env.*

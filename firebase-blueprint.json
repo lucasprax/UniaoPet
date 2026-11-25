@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "Post": {
+      "title": "Post",
+      "description": "Anúncio de pet para adoção, doação ou desaparecido",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorAvatar": { "type": "string" },
+        "authorEmail": { "type": "string" },
+        "date": { "type": "string" },
+        "category": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "title": { "type": "string" },
+        "petName": { "type": "string" },
+        "description": { "type": "string" },
+        "location": { "type": "string" },
+        "phone": { "type": "string" },
+        "likes": { "type": "number" },
+        "likedByMe": { "type": "boolean" }
+      },
+      "required": ["authorName", "authorEmail", "category", "title", "petName", "description", "location", "phone"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Comentário em um post de pet",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "postId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorAvatar": { "type": "string" },
+        "authorEmail": { "type": "string" },
+        "date": { "type": "string" },
+        "text": { "type": "string" }
+      },
+      "required": ["postId", "authorName", "authorEmail", "text"]
+    },
+    "Conversation": {
+      "title": "Conversation",
+      "description": "Conversa de chat entre usuários sobre um pet",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "lastMessage": { "type": "string" },
+        "date": { "type": "string" },
+        "petName": { "type": "string" },
+        "participants": { "type": "array" }
+      },
+      "required": ["title", "category", "participants"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Mensagem enviada em uma conversa",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sender": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["sender", "text"]
+    }
+  },
+  "firestore": {
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Anúncios de pets"
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comentários do anúncio"
+    },
+    "/conversations/{conversationId}": {
+      "schema": "Conversation",
+      "description": "Conversas de chat"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Mensagens da conversa"
+    }
+  }
+}
